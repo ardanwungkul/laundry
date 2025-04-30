@@ -25,7 +25,7 @@
 @endphp
 <div class="flex flex-col top-0 left-0 w-60 bg-white border-r h-screen sticky transition-all duration-300 z-30"
     id="sidebar">
-    <div class="h-[60px] border-b border-secondary-3 flex-none flex items-center justify-center bg-color-1-400 px-5">
+    <div class="h-[60px] border-b border-secondary-3 flex-none flex items-center justify-center bg-secondary-1 px-5">
         <p class="font-medium text-lg text-white whitespace-nowrap expanded-sidebar w-full truncate">
             Laundry</p>
         <button class="p-2 group" id="expand-button">

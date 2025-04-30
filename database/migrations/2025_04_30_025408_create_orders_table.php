@@ -18,12 +18,12 @@ return new class extends Migration
             $table->foreign('pelanggan_id')->references('id')->on('pelanggans')->onUpdate('cascade')->onDelete('set null');
             $table->unsignedBigInteger('pegawai_id')->nullable();
             $table->foreign('pegawai_id')->references('id')->on('pegawais')->onUpdate('cascade')->onDelete('set null');
-            $table->string('nama_pegawai');
+            $table->string('nama_pegawai')->nullable();
             $table->string('nama_pelanggan');
             $table->string('alamat_pelanggan');
             $table->time('order');
-            $table->time('delive');
-            $table->string('status_proses');
+            $table->time('delive')->nullable();
+            $table->string('status_proses')->nullable();
             $table->enum('status_pembayaran', ['belum_bayar', 'cash', 'transfer'])->default('belum_bayar');
             $table->string('keterangan')->nullable();
             $table->integer('harga');

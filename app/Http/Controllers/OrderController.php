@@ -20,4 +20,15 @@ class OrderController extends Controller
         $pelanggan = Pelanggan::all();
         return view('master.order.create', compact('pegawai', 'pelanggan'));
     }
+    public function store(Request $request)
+    {
+        $order = new Order();
+        $order->nama_pelanggan = $request->nama_pelanggan;
+        $order->alamat_pelanggan = $request->alamat_pelanggan;
+        $order->tanggal = $request->tanggal;
+        $order->order = $request->order;
+        $order->harga = $request->harga;
+        $order->save();
+        return redirect()->route('order.index')->with(['success' => 'Berhasil Membuat Order']);
+    }
 }

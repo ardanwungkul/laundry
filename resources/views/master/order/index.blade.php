@@ -6,17 +6,32 @@
     <x-container>
         <x-slot name="content">
             <div>
-                <a href="{{ route('order.create') }}"
-                    class="bg-secondary-3 text-secondary-2 rounded-lg px-3 py-2 text-xs border border-secondary-4 shadow-lg flex gap-1 items-center justify-center mb-12 md:mb-4 whitespace-nowrap w-min font-medium">
-                    <svg viewBox="0 0 24 24" fill="none" class="w-3 h-3 stroke-secondary-2"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 12H20M12 4V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        </path>
-                    </svg>
-                    <p>
-                        Tambah
-                    </p>
-                </a>
+                <div class="flex flex-col md:flex-row gap-3 justify-between mb-3">
+                    <div class="flex gap-3 justify-between">
+                        <a href="{{ route('order.create') }}"
+                            class="bg-secondary-3 text-secondary-2 rounded-lg px-3 py-2 text-xs border border-secondary-4 shadow-lg flex gap-1 items-center justify-center whitespace-nowrap w-min font-medium">
+                            <svg viewBox="0 0 24 24" fill="none" class="w-3 h-3 stroke-secondary-2"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 12H20M12 4V20" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                </path>
+                            </svg>
+                            <p>
+                                Tambah
+                            </p>
+                        </a>
+                        <div>
+                            <input type="month"
+                                class="text-xs border-secondary-4 text-secondary-2 bg-secondary-3 rounded-lg shadow-lg font-medium"
+                                value="{{ date('Y-m') }}">
+                        </div>
+                    </div>
+                    <div class="w-full max-w-full flex-none md:max-w-40">
+                        <input type="search"
+                            class="text-xs border-secondary-4 text-secondary-2 bg-secondary-3 rounded-lg shadow-lg w-full"
+                            placeholder="Cari....">
+                    </div>
+                </div>
                 <div class="relative pb-20">
                     <div class="rounded-lg overflow-hidden shadow-lg border border-secondary-4">
                         <table id="datatable" class="text-sm hover stripe row-border">
@@ -43,19 +58,26 @@
                                             <p>{{ $loop->index + 1 }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->tanggal }}</p>
+                                            <p>{{ \Carbon\Carbon::parse($item->tanggal)->locale('id')->format('d F Y') }}
+                                            </p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->nama }}</p>
+                                            <p>{{ $item->nama_pelanggan }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->harga }}</p>
+                                            <p class="whitespace-nowrap">Rp.
+                                                {{ number_format($item->harga, 0, ',', '.') }}</p>
                                         </td>
                                         <td>
                                             <p>{{ $item->status_proses }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->status_pembayaran }}</p>
+                                            @if ($item->status_pembayaran == 'belum_bayar')
+                                                <p
+                                                    class="bg-red-500 px-1 py-1 rounded-lg whitespace-nowrap text-white text-center shadow-lg">
+                                                    Belum Bayar
+                                                </p>
+                                            @endif
                                         </td>
                                         <td>
                                             <p>{{ $item->keterangan }}</p>
@@ -64,13 +86,14 @@
                                             <p>{{ $item->alamat }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->order }}</p>
+                                            <p>{{ \Carbon\Carbon::createFromFormat('H:i:s', $item->order)->format('H:i') }}
+                                            </p>
                                         </td>
                                         <td>
                                             <p>{{ $item->delive }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item }}</p>
+                                            <p></p>
                                         </td>
                                         <td>
                                             <div class="flex justify-center items-center gap-3">
@@ -106,6 +129,7 @@
             info: false,
             lengthChange: false,
             deferRender: true,
+            searching: false,
             paging: true,
             language: {
                 search: '',

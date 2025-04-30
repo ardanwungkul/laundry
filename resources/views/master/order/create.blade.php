@@ -4,7 +4,7 @@
     </x-slot>
     <x-container>
         <x-slot name="content">
-            <form action="{{ route('users.store') }}" method="POST">
+            <form action="{{ route('order.store') }}" method="POST">
                 @csrf
                 @method('POST')
                 <div class="text-xs md:text-sm space-y-3 max-w-xl mx-auto">
