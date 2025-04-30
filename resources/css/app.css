@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-poppins {
+    font-family: "Poppins", sans-serif;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.invisible-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.expanded-sidebar {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hidden-with-transition {
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+}
+
+.dt-search {
+    position: absolute !important;
+    top: -50px;
+    overflow: visible;
+    right: 0;
+    /* z-index: 10 !important; */
+    margin-bottom: 0px !important;
+}
+@media only screen and (max-width: 768px) {
+    .dt-input,
+    .dt-search {
+        width: 100%;
+    }
+    .dt-buttons {
+        top: -90px !important;
+    }
+}
+#datatable_wrapper {
+    position: unset;
+}
+div.dt-container {
+    position: unset !important;
+}
+.dt-layout-row {
+    margin: 0 !important;
+}
+div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+    border-bottom: 0 !important;
+}
+.dt-input {
+    font-size: 12px !important;
+    border-radius: 0.5rem !important;
+}
+
+.dt-layout-cell.dt-layout-end:has(.dt-paging) {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100%;
+
+    position: absolute !important;
+    bottom: 0px;
+    overflow: visible;
+    left: 0;
+    /* z-index: 10 !important; */
+    margin-bottom: 0px !important;
+
+    padding: 5px 10px;
+    border: 1px solid #0000001a !important;
+    border-radius: 8px !important;
+    background-color: #f3f4f6 !important;
+    width: 100%;
+
+    --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),
+        0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.dt-paging-button {
+    border-radius: 8px !important;
+}
+div.dt-container .dt-paging .dt-paging-button:hover {
+    background: linear-gradient(to bottom, #eee 0%, #eee 100%) !important;
+    border: 1px solid gray !important;
+}
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover {
+    background: linear-gradient(to bottom, white 0%, white 100%) !important;
+}
+
+table.dataTable > tbody > tr:nth-child(even) > *,
+table.dataTable.display > tbody > tr:nth-child(even) > * {
+    box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.023);
+    box-shadow: inset 0 0 0 9999px rgba(var(--dt-row-stripe), 0.04) !important;
+}
+.loadPage {
+    display: flex;
+}
+
+.loadPage .dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 2px solid #e8e8e8;
+    background: #16b0c1;
+    animation: jump 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes jump {
+    100% {
+        background: #661e92;
+        transform: translateY(-3rem) scale(1.9);
+    }
+}
+
+.loadPage .dot:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.loadPage .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loadPage .dot:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.loadPage .dot:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.loadPage .dot:nth-child(5) {
+    animation-delay: 0.5s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#loader-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.dtr-details {
+    width: 100%;
+    background-color: aliceblue;
+    border: 1px solid gray;
+    padding: 5px !important;
+    border-radius: 8px;
+}
+tr.child td.child table {
+    width: 100% !important;
+}
+div.dt-container .dt-search input {
+    margin-left: 0 !important;
+}
+
+.toggler {
+    width: 72px;
+}
+
+.toggler input {
+    display: none;
+}
+
+.toggler label {
+    display: block;
+    position: relative;
+    width: 72px;
+    height: 36px;
+    border: 1px solid #d6d6d6;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+        0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.toggler label::after {
+    display: block;
+    border-radius: 8px;
+    background-color: #d7062a;
+    content: "";
+    animation-name: toggler-size;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-out;
+    animation-direction: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+.toggler label::after,
+.toggler label .toggler-on,
+.toggler label .toggler-off {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 26px;
+    height: 26px;
+    transform: translateY(-50%) translateX(-50%);
+    transition: left 0.15s ease-in-out, background-color 0.2s ease-out,
+        width 0.15s ease-in-out, height 0.15s ease-in-out,
+        opacity 0.15s ease-in-out;
+}
+
+.toggler input:checked + label::after,
+.toggler input:checked + label .toggler-on,
+.toggler input:checked + label .toggler-off {
+    left: 75%;
+}
+
+.toggler input:checked + label::after {
+    background-color: #50ac5d;
+    animation-name: toggler-size2;
+}
+
+.toggler .toggler-on,
+.toggler .toggler-off {
+    opacity: 1;
+    z-index: 2;
+}
+
+.toggler input:checked + label .toggler-off,
+.toggler input:not(:checked) + label .toggler-on {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.toggler .path {
+    fill: none;
+    stroke: #fefefe;
+    stroke-width: 7px;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+}
+
+@keyframes toggler-size {
+    0%,
+    100% {
+        width: 26px;
+        height: 26px;
+    }
+
+    50% {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@keyframes toggler-size2 {
+    0%,
+    100% {
+        width: 26px;
+        height: 26px;
+    }
+
+    50% {
+        width: 20px;
+        height: 20px;
+    }
+}
