@@ -6,6 +6,7 @@ use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -40,5 +41,34 @@ class UserController extends Controller
             $pegawai->save();
         }
         return redirect()->route('users.index')->with(['success' => 'Berhasil Menambahkan User']);
+    }
+    public function edit(User $user)
+    {
+        return view('master.user.edit', compact('user'));
+    }
+    public function update(Request $request, User $user)
+    {
+
+        $request->validate([
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ],
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        return redirect()->route('users.index')->with(['success' => 'Berhasil Mengubah User']);
+    }
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.index')->with(['success' => 'Berhasil Menghapus User']);
     }
 }

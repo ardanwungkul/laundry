@@ -7,6 +7,9 @@
             'pegawai.index',
             'pegawai.create',
             'pegawai.edit',
+            'pelanggan.index',
+            'pelanggan.create',
+            'pelanggan.edit',
             'users.index',
             'users.create',
             'users.edit',
@@ -25,7 +28,7 @@
 @endphp
 <div class="flex flex-col top-0 left-0 w-60 bg-white border-r h-screen sticky transition-all duration-300 z-30"
     id="sidebar">
-    <div class="h-[60px] border-b border-secondary-3 flex-none flex items-center justify-center bg-secondary-1 px-5">
+    <div class="h-[60px] border-b border-secondary-3 flex-none flex items-center justify-center bg-blue-500 px-5">
         <p class="font-medium text-lg text-white whitespace-nowrap expanded-sidebar w-full truncate">
             Laundry</p>
         <button class="p-2 group" id="expand-button">
@@ -142,6 +145,20 @@
                                 </svg>
                             </span>
                             <span class="ml-2 text-xs tracking-wide truncate">Pegawai</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pelanggan.index') }}"
+                            class="relative flex flex-row items-center h-9 focus:outline-none hover:bg-gray-50 text-secondary-1 hover:text-gray-800 border-l-4 border-transparent hover:border-secondary-1 pr-6 pl-3">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <span class="ml-2 text-xs tracking-wide truncate">Pelanggan</span>
                         </a>
                     </li>
                     <li>
@@ -352,6 +369,21 @@
 
                                     </span>
                                     <span class="ml-2 text-xs tracking-wide truncate">Pegawai</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pelanggan.index') }}"
+                                    class="relative flex flex-row items-center h-9 focus:outline-none hover:bg-gray-50 text-secondary-1 hover:text-gray-800 border-l-4 border-transparent hover:border-secondary-1 pr-6">
+                                    <span class="inline-flex justify-center items-center ml-2">
+                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                    </span>
+                                    <span class="ml-2 text-xs tracking-wide truncate">Pelanggan</span>
                                 </a>
                             </li>
                             <li>

@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        Manajemen Pegawai
+        Manajemen Pelanggan
     </x-slot>
 
     <x-container>
         <x-slot name="content">
             <div>
-                <a href="{{ route('pegawai.create') }}"
+                <a href="{{ route('pelanggan.create') }}"
                     class="bg-secondary-3 text-secondary-2 rounded-lg px-3 py-2 text-xs border border-secondary-4 shadow-lg flex gap-1 items-center justify-center mb-12 md:mb-4 whitespace-nowrap w-min font-medium">
                     <svg viewBox="0 0 24 24" fill="none" class="w-3 h-3 stroke-secondary-2"
                         xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +24,7 @@
                                 <tr class="text-xs">
                                     <td class="!font-medium !text-xs ">Nama</td>
                                     <td class="!font-medium !text-xs ">Nomor Hp</td>
-                                    <td class="!font-medium !text-xs ">Email</td>
+                                    <td class="!font-medium !text-xs ">Alamat</td>
                                     <td class="!font-medium !text-xs w-32"></td>
                                 </tr>
                             </thead>
@@ -38,12 +38,12 @@
                                             <p class="text-start">{{ $item->no_hp }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->user->email }}</p>
+                                            <p>{{ $item->alamat }}</p>
                                         </td>
                                         <td>
                                             <div class="flex justify-center items-center gap-3">
                                                 <div>
-                                                    <a href="{{ route('pegawai.edit', $item->id) }}"
+                                                    <a href="{{ route('pelanggan.edit', $item->id) }}"
                                                         class="flex items-center gap-1 bg-secondary-3 px-3 py-1 rounded-lg text-secondary-2 hover:bg-opacity-90 border border-secondary-4 shadow-lg">
                                                         <svg class="w-4 h-4" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
@@ -70,8 +70,7 @@
                                                 </div>
                                             </div>
                                             <x-modal.confirm-delete :id="$item->id" :name="'Data'"
-                                                :action="route('pegawai.destroy', $item->id)" />
-
+                                                :action="route('pelanggan.destroy', $item->id)" />
                                         </td>
                                     </tr>
                                 @endforeach

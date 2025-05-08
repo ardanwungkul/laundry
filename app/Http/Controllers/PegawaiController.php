@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
@@ -21,7 +23,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('master.pegawai.create');
     }
 
     /**
@@ -29,7 +31,26 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required',
+                'no_hp' => 'required',
+                'email' => 'required|unique:users',
+                'password' => 'required',
+            ],
+        );
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = 'pegawai';
+        $user->save();
+        $pegawai = new Pegawai();
+        $pegawai->nama = $request->name;
+        $pegawai->no_hp = $request->no_hp;
+        $pegawai->user_id = $user->id;
+        $pegawai->save();
+        return redirect()->route('pegawai.index')->with(['success' => 'Berhasil Menambahkan Pegawai']);
     }
 
     /**
@@ -45,7 +66,7 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        //
+        return view('master.pegawai.edit', compact('pegawai'));
     }
 
     /**
@@ -53,7 +74,10 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, Pegawai $pegawai)
     {
-        //
+        $pegawai->nama = $request->name;
+        $pegawai->no_hp = $request->no_hp;
+        $pegawai->save();
+        return redirect()->route('pegawai.index')->with(['success' => 'Berhasil Mengubah Pegawai']);
     }
 
     /**
@@ -61,6 +85,7 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        //
+        $pegawai->user->delete();
+        return redirect()->route('pegawai.index')->with(['success' => 'Berhasil Menghapus Pegawai']);
     }
 }

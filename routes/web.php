@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +21,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware(['auth', 'role:admin,owner'])->group(function () {
+    Route::resource('/pelanggan', PelangganController::class);
     Route::resource('/pegawai', PegawaiController::class);
     Route::resource('/order', OrderController::class);
+    Route::post('/order-progress', [OrderController::class, 'progress'])->name('order.progress');
 });
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/users', UserController::class);

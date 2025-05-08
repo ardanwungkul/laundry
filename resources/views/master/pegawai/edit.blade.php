@@ -1,39 +1,27 @@
 <x-app-layout>
     <x-slot name="header">
-        Tambah Pegawai
+        Edit Pegawai
     </x-slot>
     <x-container>
         <x-slot name="content">
-            <form action="{{ route('pegawai.store') }}" method="POST">
+            <form action="{{ route('pegawai.update', $pegawai->id) }}" method="POST">
                 @csrf
-                @method('POST')
+                @method('PUT')
                 <div class="text-xs md:text-sm space-y-3 max-w-xl mx-auto">
                     <div class="flex flex-col gap-1">
                         <label for="name">Nama</label>
                         <input type="text" id="name" name="name"
                             class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            value="{{ old('name') }}" placeholder="Masukkan Nama User" required>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-email" value="{{ old('email') }}" placeholder="Masukkan Email" required>
+                            value="{{ $pegawai->nama }}" placeholder="Masukkan Nama User" required>
                     </div>
                     <div class="flex flex-col gap-1">
                         <label for="no_hp">Nomor Hp</label>
                         <input type="text" id="no_hp" name="no_hp"
                             class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-email" value="{{ old('email') }}" placeholder="Masukkan Nomor Hp"
+                            autocomplete="new-email" value="{{ $pegawai->no_hp }}" placeholder="Masukkan Nomor Hp"
                             required>
                         <small id="validation_no_hp" style="color: red;"></small>
 
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-password" value="{{ old('password') }}" placeholder="Password" required>
                     </div>
                     <div class="flex md:justify-end justify-between items-center md:gap-4 gap-1">
                         <button

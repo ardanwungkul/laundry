@@ -1,39 +1,34 @@
 <x-app-layout>
     <x-slot name="header">
-        Tambah Pegawai
+        Edit Pelanggan
     </x-slot>
     <x-container>
         <x-slot name="content">
-            <form action="{{ route('pegawai.store') }}" method="POST">
+            <form action="{{ route('pelanggan.update', $pelanggan->id) }}" method="POST">
                 @csrf
-                @method('POST')
-                <div class="text-xs md:text-sm space-y-3 max-w-xl mx-auto">
+                @method('PUT')
+                <div class="space-y-3 max-w-xl mx-auto md:text-sm text-xs">
                     <div class="flex flex-col gap-1">
-                        <label for="name">Nama</label>
-                        <input type="text" id="name" name="name"
+                        <input type="text" name="pelanggan_id" id="pelanggan_id" class="hidden">
+                        <label for="nama_pelanggan">Nama Pelanggan</label>
+                        <input type="text" id="nama_pelanggan" name="nama_pelanggan"
                             class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            value="{{ old('name') }}" placeholder="Masukkan Nama User" required>
+                            value="{{ $pelanggan->nama }}" placeholder="Masukkan Nama Pelanggan" required>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email"
+                        <label for="nomor_pelanggan">Nomor Pelanggan</label>
+                        <input type="text" id="nomor_pelanggan" name="nomor_pelanggan"
                             class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-email" value="{{ old('email') }}" placeholder="Masukkan Email" required>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <label for="no_hp">Nomor Hp</label>
-                        <input type="text" id="no_hp" name="no_hp"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-email" value="{{ old('email') }}" placeholder="Masukkan Nomor Hp"
+                            value="{{ $pelanggan->no_hp }}" placeholder="Masukkan Nomor Pelanggan (62xxx/08xxx)"
                             required>
-                        <small id="validation_no_hp" style="color: red;"></small>
+                        <small id="validation_nomor_pelanggan" style="color: red;"></small>
 
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-password" value="{{ old('password') }}" placeholder="Password" required>
+                        <label for="alamat_pelanggan">Alamat Pelanggan</label>
+                        <textarea id="alamat_pelanggan" name="alamat_pelanggan"
+                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md" rows="4"
+                            placeholder="Masukkan Alamat Pelanggan" required>{{ $pelanggan->alamat }}</textarea>
                     </div>
                     <div class="flex md:justify-end justify-between items-center md:gap-4 gap-1">
                         <button
@@ -48,7 +43,7 @@
                             <p>Simpan</p>
                         </button>
                         <a class="bg-secondary-3 hover:bg-opacity-80 text-secondary-1 py-2 px-4 rounded-lg border border-secondary-4 flex items-center gap-1 text-xs md:text-sm shadow-md"
-                            href="{{ route('pegawai.index') }}">
+                            href="{{ route('pelanggan.index') }}">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -63,15 +58,14 @@
         </x-slot>
     </x-container>
 </x-app-layout>
-{{-- Nomor Hp --}}
 <script>
-    document.getElementById('no_hp').addEventListener('input', function(e) {
+    document.getElementById('nomor_pelanggan').addEventListener('input', function(e) {
         this.value = this.value.replace(/[^0-9+]/g, '');
     });
 
-    const validationNomorHp = document.getElementById('validation_no_hp');
+    const validationNomorHp = document.getElementById('validation_nomor_pelanggan');
 
-    document.getElementById('no_hp').addEventListener('blur', function(e) {
+    document.getElementById('nomor_pelanggan').addEventListener('blur', function(e) {
         let val = this.value.trim();
 
         if (/^08/.test(val)) {
